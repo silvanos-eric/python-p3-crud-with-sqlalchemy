@@ -69,4 +69,9 @@ if __name__ == '__main__':
 
     # Get all student names
     names = [name for name in session.query(Student.name)]
-    print(names)
+
+    students_by_name = [
+        student for student in session.query(Student.name).order_by(
+            desc(Student.grade))
+    ]
+    print(students_by_name)
