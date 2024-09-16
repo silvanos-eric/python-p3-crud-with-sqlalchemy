@@ -100,5 +100,16 @@ if __name__ == '__main__':
     # 2. use of the update() method
     session.query(Student).update({Student.grade: Student.grade + 1})
 
-    print([(student.name, student.grade)
-           for student in session.query(Student)])
+    # Create a query to fetch all records where the student name is "Albert Einstein"
+    query = session.query(Student).filter(Student.name == "Albert Einstein")
+
+    # Retrieve first matching record as object
+    albert_einstein = query.first()
+
+    # Delete record
+    session.delete(albert_einstein)
+    session.commit()
+
+    # Try to retrieve deleted record
+    albert_einstein = query.first()
+    print(albert_einstein)
