@@ -91,8 +91,14 @@ if __name__ == '__main__':
     rows = session.query(Student).filter(Student.name.like('%Alan%'),
                                          Student.grade == 11)
 
-    # Update class model instance and synchronize with relation records
-    for student in session.query(Student):
-        student.grade += 1
+    # Increment the grade for all student
+    # 1. use of a session loop
+    # for student in session.query(Student):
+    #     student.grade += 1
 
     session.commit()
+    # 2. use of the update() method
+    session.query(Student).update({Student.grade: Student.grade + 1})
+
+    print([(student.name, student.grade)
+           for student in session.query(Student)])
