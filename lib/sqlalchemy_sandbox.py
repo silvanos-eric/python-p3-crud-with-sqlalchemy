@@ -60,8 +60,11 @@ if __name__ == '__main__':
                           grade=11,
                           birthday=datetime(year=1912, month=6, day=23))
 
+    # Save a collection of Student model instances
     session.bulk_save_objects([albert_einstein, alan_turing])
     session.commit()
 
-    print(f"New Student ID is {albert_einstein.id}")
-    print(f"New Student ID is {alan_turing.id}")
+    # Get a collection of student rows from the student table
+    students = session.query(Student).all()
+
+    print(students)
