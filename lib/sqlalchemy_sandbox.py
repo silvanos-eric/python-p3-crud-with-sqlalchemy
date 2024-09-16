@@ -83,4 +83,8 @@ if __name__ == '__main__':
             desc(Student.grade)).limit(1)
     ]
 
+    # Get the oldest student using the first method
+    oldest_student_using_first = session.query(
+        Student.name, Student.birthday).order_by(desc(Student.grade)).first()
+
     print(oldest_student)
