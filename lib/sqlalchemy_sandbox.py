@@ -87,4 +87,9 @@ if __name__ == '__main__':
     oldest_student_using_first = session.query(
         Student.name, Student.birthday).order_by(desc(Student.grade)).first()
 
-    print(oldest_student)
+    # Get all students whose name includes 'Alan'
+    rows = session.query(Student).filter(Student.name.like('%Alan%'),
+                                         Student.grade == 11)
+
+    for record in rows:
+        print(record.name)
