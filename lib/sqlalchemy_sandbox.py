@@ -67,4 +67,6 @@ if __name__ == '__main__':
     # Get a collection of student rows from the student table
     students = session.query(Student).all()
 
-    print(students)
+    # Get all student names
+    names = [name for name in session.query(Student.name)]
+    print(names)
