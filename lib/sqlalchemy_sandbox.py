@@ -70,8 +70,17 @@ if __name__ == '__main__':
     # Get all student names
     names = [name for name in session.query(Student.name)]
 
+    # Get all students names sorted in desc order using grade
     students_by_name = [
         student for student in session.query(Student.name).order_by(
             desc(Student.grade))
     ]
-    print(students_by_name)
+
+    # Get the oldest student
+    oldest_student = [
+        student
+        for student in session.query(Student.name, Student.birthday).order_by(
+            desc(Student.grade)).limit(1)
+    ]
+
+    print(oldest_student)
